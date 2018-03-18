@@ -1,0 +1,2 @@
+# tarea6
+CREAR TEMPLASE 
