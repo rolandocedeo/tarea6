@@ -1,5 +1,5 @@
 // CREACION DE TEMPLATE USUARIO Y PASSWORD
-//html
+//CODIGO HTML
 
 body{
     background:#3CF;
@@ -85,7 +85,7 @@ nav ul li a:hover {
     color:#000;
 }
 
-//CSS
+//CODIGO CSS
 
 body{
     background:#3CF;
