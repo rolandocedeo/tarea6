@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio de Sesión</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <link href="estilos.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <form class="form-signin">
+            <h2 class="form-signin-heading">Iniciar Sesi&oacute;n</h2>
+            <label for="inputUser" class="sr-only">Usuario</label>
+            <input type="text" id="inputUser" class="form-control" placeholder="Usuario" required autofocus>
+            <br />
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <br />
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="btnLogin">
+                Iniciar Sesi&oacute;n
+                <span class="glyphicon glyphicon-log-in"></span>
+            </button>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnLogin").on("click", function (e) {
+                var usr = $("#inputUser").val();
+                var pass = $("#inputPassword").val();
+                if ((usr != "maestria") || (pass != "2018")) {
+                    alert("Credenciales incorrectas.");
+                } else {
+                    var curWin = window.open('', '_self', ''); //open the current window
+                    window.close(curWin);
+                    window.open("Tarea5.html");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
