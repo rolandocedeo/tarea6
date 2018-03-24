@@ -103,6 +103,30 @@
     </div>
     
     <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        var ubicacion =  {lat: -2.2233492, lng: -80.0918336}
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: ubicacion,
+          zoom: 6
+        });
+        var marker1 = new google.maps.Marker({
+            map: map,
+            position: {lat: -2.2233492, lng: -80.0918336}
+        });
+        var marker1 = new google.maps.Marker({
+            map: map,
+            position: {lat:  -2.8967233, lng: -78.9924464}
+        });
+        var marker1 = new google.maps.Marker({
+            map: map,
+            position: {lat: -0.1783183, lng: -78.4653873}
+        });
+      }
+    </script>
+
+
     <div id="video">
         <video src="videoplayback.mp4" width="100%" height="100%" controls autoplay preload></video>
     </div>
@@ -113,8 +137,13 @@
         <canvas id="canvas" style="width:100%; height:100%"></canvas>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi_VF7Gq5_upzFRCIYcuBYLMinX1cWals&callback=initMap&libraries=places"
-            async defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi_VF7Gq5_upzFRCIYcuBYLMinX1cWals&callback=initMap&libraries=places"
+            async defer></script>-->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi_VF7Gq5_upzFRCIYcuBYLMinX1cWals&callback=initMap"
+    async defer></script>
+
+
 
     <script>
         var itemName = ["Tend Inf", "Com Dat", "Est", "Met Inv", "Seg Inf"];
