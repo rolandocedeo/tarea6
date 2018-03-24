@@ -107,14 +107,15 @@
         var map;
         function initMap() {
             var marcadores = [
-                ['CIUDAD DE QUITO', -0.1783183,-78.4653873],
-                ['CIUDAD DE GUAYAQUIL',  -2.2233492,-80.0918336],
-                ['CIUDAD DE CUENCA',  -2.8967233,-78.9924464]
+                ['CIUDAD DE QUITO', -0.1783183, -78.4653873, 'Parque Metropolitano', 'Carrera efectuada el 15 de febrero de 2017'],
+                ['CIUDAD DE GUAYAQUIL', -2.2233492, -80.0918336, 'Parque El Lago', 'Carrera efectuada el 18 de noviembre de 2017'],
+                ['CIUDAD DE CUENCA', -2.8967233, -78.9924464, 'Parque La Union', 'Carrera efectuada el 7 de julio de 2017']
             ];
             map = new google.maps.Map(document.getElementById('map'), {
               zoom: 6,
               center: {lat: -2.2233492, lng: -80.0918336}
             });
+            var infoWindow = new google.maps.InfoWindow();
             var marker, i;
             for (i = 0; i < marcadores.length; i++) {
                 marker = new google.maps.Marker({
@@ -123,6 +124,13 @@
                 });
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
+                        var contentString = '<div id="content">' + 
+                            '<h5>' + marcadores[i][0] + '</h6>' +
+                            '<h6>Lugar: ' + marcadores[i][3] + '</h6>' +
+                            '<p>' + marcadores[i][4] + '</p>' +
+                            '</div>';
+                        infoWindow.setContent(contentString);
+                        infoWindow.open(map, marker);
                         if (marcadores[i][0] == "CIUDAD DE QUITO") {
                             grTitulo = "Carrera en la Ciudad de Quito";
                             grSubtitulo = "Resultados de la Competencia";
