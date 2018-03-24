@@ -104,26 +104,32 @@
     
     <div id="map"></div>
     <script>
-      var map;
-      function initMap() {
-        var ubicacion =  {lat: -2.2233492, lng: -80.0918336}
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: ubicacion,
-          zoom: 6
-        });
-        var marker1 = new google.maps.Marker({
-            map: map,
-            position: {lat: -2.2233492, lng: -80.0918336}
-        });
-        var marker1 = new google.maps.Marker({
-            map: map,
-            position: {lat:  -2.8967233, lng: -78.9924464}
-        });
-        var marker1 = new google.maps.Marker({
-            map: map,
-            position: {lat: -0.1783183, lng: -78.4653873}
-        });
-      }
+        var map;
+        function initMap() {
+            var marcadores = [
+                ['CIUDAD DE QUITO', -0.1783183,-78.4653873],
+                ['CIUDAD DE GUAYAQUIL',  -2.2233492,-80.0918336],
+                ['CIUDAD DE CUENCA',  -2.8967233,-78.9924464]
+            ];
+            map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 6,
+              center: {lat: -2.2233492, lng: -80.0918336}
+            });
+            var marker, i;
+            for (i = 0; i < marcadores.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(marcadores[i][1],marcadores[i][2]),
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                         alert(marcadores[i][0]);
+
+                         
+                    }
+                })(marker, i));
+            }
+        }
     </script>
 
 
