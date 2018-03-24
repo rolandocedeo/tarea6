@@ -123,16 +123,45 @@
                 });
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
-                         alert(marcadores[i][0]);
-
-                         
+                        if (marcadores[i][0] == "CIUDAD DE QUITO") {
+                            grTitulo = "Carrera en la Ciudad de Quito";
+                            grSubtitulo = "Resultados de la Competencia";
+                            grSeries = [{
+                                name: 'Hombres',
+                                data: [25, 35, 42, 38]
+                            }, {
+                                name: 'Mujeres',
+                                data: [18, 23, 32, 29]
+                            }];
+                            redibujar();
+                        } else if (marcadores[i][0] == "CIUDAD DE GUAYAQUIL") {
+                            grTitulo = "Carrera en la Ciudad de Guayaquil";
+                            grSubtitulo = "Resultados de la Competencia";
+                            grSeries = [{
+                                name: 'Hombres',
+                                data: [14, 36, 48, 32]
+                            }, {
+                                name: 'Mujeres',
+                                data: [12, 25, 30, 21]
+                            }];
+                            redibujar();
+                        } else if (marcadores[i][0] == "CIUDAD DE CUENCA") {
+                            grTitulo = "Carrera en la Ciudad de Cuenca";
+                            grSubtitulo = "Resultados de la Competencia";
+                            grSeries = [{
+                                name: 'Hombres',
+                                data: [30, 41, 32, 26]
+                            }, {
+                                name: 'Mujeres',
+                                data: [16, 19, 23, 32]
+                            }];
+                            redibujar();
+                        }
                     }
                 })(marker, i));
             }
         }
     </script>
-
-
     <div id="video">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/UoAfFm3mnX0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> 
     </div>
@@ -149,11 +178,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi_VF7Gq5_upzFRCIYcuBYLMinX1cWals&callback=initMap"
     async defer></script>
 
-
-
     <script>
-        var itemName = ["Tend Inf", "Com Dat", "Est", "Met Inv", "Seg Inf"];
-        var itemValue = [8.4, 8.9, 7.5, 7.8, 8.3];
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
         var radius = canvas.height / 2;
@@ -228,62 +253,70 @@
             ctx.rotate(-pos);
         }
 
-        Highcharts.chart('grafico', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Notas Promedio MSIG XIX'
-            },
-            subtitle: {
-                text: 'Fuente: Sidweb.com'
-            },
-            xAxis: {
-                categories: [
-                    'Tend Inf',
-                    'Com Dat',
-                    'Est',
-                    'Met Inv',
-                    'Seg Inf',
-                    'Cont Fin',
-                    'Fin',
-                    'Comp Org',
-                    'Perps SL',
-                    'Ing Softw',
-                    'Des Web',
-                    'Adm Proy',
-                    'Tecn Web'
-                ],
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
+        //Para el gráfico
+        var migrafico;
+        var grTitulo = 'Carreras Aficionadas Mountain Bike'
+        var grSubtitulo = 'Datos del Ecuador - 2017'
+        var grSeries = [{
+            name: 'Hombres',
+            data: [69, 82, 122, 96]
+        }, {
+            name: 'Mujeres',
+            data: [46, 67, 85, 82]
+        }];
+
+        function dibujar() {
+            return Highcharts.chart('grafico', {
+                chart: {
+                    type: 'column'
+                },
                 title: {
-                    text: 'Nota Promedio'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Alumno 1',
-                data: [9.9, 7.5, 6.4, 9.2, 4.0, 6.0, 5.6, 8.5, 6.4, 4.1, 5.6, 4.4, 6.8]
-            }, {
-                name: 'Alumno 2',
-                data: [8.6, 8.8, 8.5, 9.4, 6.0, 8.5, 5.0, 4.3, 9.2, 8.5, 6.6, 9.3, 7.8]
-            }]
-        });
+                    text: grTitulo
+                },
+                subtitle: {
+                    text: grSubtitulo
+                },
+                xAxis: {
+                    categories: [
+                        'Junior',
+                        'Juvenil',
+                        'Elite',
+                        'Master'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Participantes'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: grSeries
+            });
+        }
+
+        dibujar();
+
+        function redibujar() {
+            var grafico = dibujar();
+            if (!((grafico === 'undefined') || (grafico == null))) {
+                grafico.redraw();
+            }
+        }
 
     </script>
 </body>
